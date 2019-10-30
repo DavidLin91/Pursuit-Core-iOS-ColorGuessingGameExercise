@@ -21,7 +21,8 @@ class ViewController: UIViewController {
     
     
     var yourScore = 0
-    let highScore = 0
+    var highScore = 0
+    var currentScore = 0
     var counter = 0
 
     
@@ -56,13 +57,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction func colorButtons(_ sender: UIButton) {
-        
+        var newHighScore = highScore
         //let yourScoreString = String(yourScore)
         if sender.tag == counter {
             yourScore += 1
             yourScoreBox.text = String(yourScore)
             rightWrongLabel.text = "🎉 CORRECT 🎉"
             randomNewColor()
+            currentScore = yourScore
             
         } else if sender.tag != counter {
             redButton.isEnabled = false
@@ -71,7 +73,8 @@ class ViewController: UIViewController {
             rightWrongLabel.text = " 💀 GAME OVER 💀"
 //            var highScoreString = String(highScore)
             print(highScore)
-            if yourScore > highScore {
+            print(yourScore)
+            if yourScore > newHighScore {
          // highScoreBox.text = yourScoreString
                 highScoreBox.text = yourScoreBox.text
           print("here")
@@ -90,18 +93,22 @@ class ViewController: UIViewController {
     
     
     @IBAction func playAgain(_ sender: UIButton) {
-            yourScore = 0
-            //yourScoreBox.text = "0"
+            if currentScore > highScore {
+            highScore = currentScore
+                highScoreBox.text = String(highScore)
+            } else if currentScore < highScore {
+                highScoreBox.text = String(highScore)
+        }
+                //yourScoreBox.text = "0"
             rightWrongLabel.text = " "
 //            viewDidLoad()
             redButton.isEnabled = true
             greenButton.isEnabled = true
             blueButton.isEnabled = true
-        randomNewColor()
-         yourScoreBox.text = "0"
-        if yourScore > highScore {
-            yourScoreBox.text = highScoreBox.text
-                  print("here")
+            randomNewColor()
+            yourScore = 0
+            yourScoreBox.text = "0"
+
         }
     }
-}
+
