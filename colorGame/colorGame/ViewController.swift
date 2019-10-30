@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var rightWrongLabel: UILabel!
     
     
-    var yourScore = 1
+    var yourScore = 0
     let highScore = 0
     var counter = 0
 
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         randomNewColor()
         yourScoreBox.text = "0"
-        highScoreBox.text =  
+        highScoreBox.text =  "0"
     }
      
     func randomNewColor () {
@@ -57,10 +57,10 @@ class ViewController: UIViewController {
     
     @IBAction func colorButtons(_ sender: UIButton) {
         
-        let yourScoreString = String(yourScore)
+        //let yourScoreString = String(yourScore)
         if sender.tag == counter {
             yourScore += 1
-            yourScoreBox.text = yourScoreString
+            yourScoreBox.text = String(yourScore)
             rightWrongLabel.text = "🎉 CORRECT 🎉"
             randomNewColor()
             
@@ -69,12 +69,15 @@ class ViewController: UIViewController {
             greenButton.isEnabled = false
            blueButton.isEnabled = false
             rightWrongLabel.text = " 💀 GAME OVER 💀"
-            var highScoreString = String(highScore)
+//            var highScoreString = String(highScore)
             print(highScore)
-      if yourScore > highScore {
-          highScoreBox.text = yourScoreBox.text
+            if yourScore > highScore {
+         // highScoreBox.text = yourScoreString
+                highScoreBox.text = yourScoreBox.text
           print("here")
-      }
+            } else {
+                highScoreBox.text = String(highScore)
+            }
 
         }
         
@@ -87,7 +90,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func playAgain(_ sender: UIButton) {
-            yourScore = 1
+            yourScore = 0
             //yourScoreBox.text = "0"
             rightWrongLabel.text = " "
 //            viewDidLoad()
@@ -97,10 +100,8 @@ class ViewController: UIViewController {
         randomNewColor()
          yourScoreBox.text = "0"
         if yourScore > highScore {
-                  highScoreBox.text = yourScoreBox.text
+            yourScoreBox.text = highScoreBox.text
                   print("here")
-              }
+        }
     }
-
-
 }
