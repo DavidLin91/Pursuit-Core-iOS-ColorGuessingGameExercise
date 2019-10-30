@@ -57,8 +57,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func colorButtons(_ sender: UIButton) {
-        var newHighScore = highScore
-        //let yourScoreString = String(yourScore)
+        let newHighScore = highScore
         if sender.tag == counter {
             yourScore += 1
             yourScoreBox.text = String(yourScore)
@@ -71,22 +70,14 @@ class ViewController: UIViewController {
             greenButton.isEnabled = false
            blueButton.isEnabled = false
             rightWrongLabel.text = " 💀 GAME OVER 💀"
-//            var highScoreString = String(highScore)
-            print(highScore)
-            print(yourScore)
             if yourScore > newHighScore {
          // highScoreBox.text = yourScoreString
                 highScoreBox.text = yourScoreBox.text
           print("here")
             } else {
                 highScoreBox.text = String(highScore)
-            }
-
         }
-        
-        // CANNOT GET HIGH SCORE TO PRINT
-        
-       
+    }
 }
     
     
@@ -99,9 +90,7 @@ class ViewController: UIViewController {
             } else if currentScore < highScore {
                 highScoreBox.text = String(highScore)
         }
-                //yourScoreBox.text = "0"
             rightWrongLabel.text = " "
-//            viewDidLoad()
             redButton.isEnabled = true
             greenButton.isEnabled = true
             blueButton.isEnabled = true
